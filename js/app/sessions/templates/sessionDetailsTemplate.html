@@ -24,7 +24,7 @@ limitations under the License.
     <% if( speakers.length ) { %>
         <div class="anyconf-view anyconf-view--bordered anyconf-view--bordered-last">
             <h4 class="anyconf-label-title anyconf-condensed">Presented By:</h4>
-            <% _.each(speakers, function(data) { %> 
+            <% _.each(speakers, function(data) { %>
                 <div class="anyconf-session-speakers">
                     <img src="<%- data.attributes.profile_url %>" width="80px">
                     <ul class="anyconf-link-list">
@@ -36,5 +36,4 @@ limitations under the License.
             <% }); %>
         </div>
     <% } %>
-    <div class="anyconf-pull-message anyconf-view__container pta-message"></div>
 </div>

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 define(function(require, exports, module) {
-    
+
     var appRouter = require('app/appRouter');
     var utils = require('app/utils');
     var CollectionDetailsView = require('app/components/collectionDetailsView');
@@ -25,46 +25,46 @@ define(function(require, exports, module) {
 
 	var ItemDetailsView = Backbone.View.extend({
 	    manage: true,
-		
+
 		tagName: 'div',
 		className: 'item-details-wrap',
-		
+
 		events: {
             'pointerdown .js-link': 'onLinkDown',
             'pointerup .js-link': 'onLinkUp',
             'click .js-link': 'onLinkUp',
             'pointerdown': 'onPointerDown'
 		},
-		
+
 		onPointerDown: function(jqEvt) {
 		    console.log('prevent default from details view');
 		    // jqEvt.preventDefault();
 		},
-		
+
 		onLinkDown: function(jqEvt) {
-		    
+
 		},
-		
+
 		onLinkUp: function(jqEvt) {
 		    jqEvt.preventDefault();
 		    var target = jqEvt.target;
 		    var href = target.getAttribute('href'); // 'speakerDetails/' + id
             appRouter.navigate(href, {trigger: true});
 		},
-		
+
 		hide: function() {
 			// this.el.parentNode.removeChild( this.el );
 			this.el.style.display = 'none';
 		},
-		
+
 		setupAsCurrent: function() {
 			this.el.style.display = 'block';
 			utils.setTransform(this.el, 'none');
-			if( !this.ptaReady ) {
-			    this.setupPTA();
-			}
+			// if( !this.ptaReady ) {
+			//     this.setupPTA();
+			// }
 		},
-		
+
 		setupAsPrevious: function() {
 			// this.renderContent();
 			this.el.style.display = 'block';
@@ -72,7 +72,7 @@ define(function(require, exports, module) {
 			utils.setTransform(this.el, 'translateX(' + -width + 'px) translateZ(0px)');
 			// this.el.setAttribute('POS', 'PREVIOUS');
 		},
-		
+
 		setupAsNext: function() {
 			// this.renderContent();
 			this.el.style.display = 'block';
@@ -80,15 +80,15 @@ define(function(require, exports, module) {
 			utils.setTransform(this.el, 'translateX(' + width + 'px) translateZ(0px)');
 			// this.el.setAttribute('POS', 'NEXT');
 		},
-		
+
 		setupPTA: function() {
 		    var _this = this;
-		    var messageEl = this.el.querySelector('.pta-message');		    
+		    var messageEl = this.el.querySelector('.pta-message');
             var options = {
                 wrapperEl: this.el,
                 scrollerEl: this.el.firstElementChild,
                 messageEl: messageEl,
-                
+
                 onPull: function() {
                     messageEl.classList.remove('anyconf-return-ready');
                     messageEl.textContent = Strings.PULL_UP_TO_CLOSE;
